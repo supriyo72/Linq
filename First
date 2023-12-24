@@ -1,0 +1,68 @@
+using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+
+class FoD
+{
+    public int EmpId{get; set;}
+    public string EmpName{get; set;}
+    public string job{get; set;}
+    public string city{get; set;}
+    public double salary{get; set;}
+}
+public class Linq3{
+    public static void Main(string[] args)
+    {
+        FoD obj1 = new FoD(){EmpId=25,EmpName="Aman",job="Designer",city="Mumbai",salary=34500};
+        FoD obj2 = new FoD(){EmpId=65,EmpName="Rahul",job="Manager",city="Noida",salary=45000};
+        FoD obj3 = new FoD(){EmpId=34,EmpName="Deepak",job="Salesman",city="Delhi",salary=21874};
+        FoD obj4 = new FoD(){EmpId=19,EmpName="Kamlesh",job="Manager",city="Gurgaon",salary=69248};
+        FoD obj5 = new FoD(){EmpId=78,EmpName="Rinku",job="Influencer",city="Mumbai",salary=14521};
+
+        List<FoD> myList = new List<FoD>() {obj1,obj2,obj3,obj4,obj5};
+        
+        Console.WriteLine("var");
+        var result= myList.First(emp=>emp.job=="Manager");
+        Console.WriteLine("Employee Name is: "+result.EmpName +" Employee id is: "+ result.EmpId);
+        
+        var result1= myList.FirstOrDefault(emp=>emp.job=="Staff");
+        if(result1 != null)
+        {
+            Console.WriteLine("Employee Name is: "+result1.EmpName +" Employee id is: "+ result1.EmpId);
+        }else{
+            Console.WriteLine("NOT FOUND");
+        }
+
+        Console.WriteLine("Where");
+        List<FoD> ml= myList.Where(emp=>emp.job=="Manager").ToList();
+        Console.WriteLine(ml[0].EmpName+","+ml[0].EmpId);
+
+        Console.WriteLine("Where using First");
+        FoD myList4= myList.Where(emp=> emp.job=="Manager").First();
+        Console.WriteLine(myList4.EmpName+","+myList4.EmpId);
+
+        Console.WriteLine("First");
+        FoD ml2= myList.First(emp=>emp.job=="Manager");
+        Console.WriteLine("Employee Name is: "+ml2.EmpName +" Employee id is: "+ ml2.EmpId);
+
+        // FoD ml1= myList.First(emp=>emp.job=="Clerk");
+        // Console.WriteLine("Employee Name is: "+ml1.EmpName +" Employee id is: "+ ml1.EmpId);
+        //op -->  Unhandled exception.
+
+        
+        // FoD ml1= myList.FirstOrDefault(emp=>emp.job=="Clerk");
+        // Console.WriteLine("Employee Name is: "+ml1.EmpName +" Employee id is: "+ ml1.EmpId);
+        // op System.NullReferenceException
+
+
+        FoD ml1= myList.FirstOrDefault(emp=>emp.job=="Clerk");
+        if(ml1 != null)
+        {
+            Console.WriteLine("Employee Name is: "+ml1.EmpName +" Employee id is: "+ ml1.EmpId);
+        }else{
+            Console.WriteLine("NOT FOUND");
+        }
+        
+    }
+}
