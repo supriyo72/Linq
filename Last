@@ -1,0 +1,61 @@
+using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+
+class LoD
+{
+    public int EmpId{get; set;}
+    public string EmpName{get; set;}
+    public string job{get; set;}
+    public string city{get; set;}
+    public double salary{get; set;}
+}
+public class Linq4{
+    public static void Main(string[] args)
+    {
+        LoD obj1 = new LoD(){EmpId=25,EmpName="Aman",job="Designer",city="Mumbai",salary=34500};
+        LoD obj2 = new LoD(){EmpId=65,EmpName="Rahul",job="Developer",city="Noida",salary=45000};
+        LoD obj3 = new LoD(){EmpId=34,EmpName="Deepak",job="Salesman",city="Delhi",salary=21874};
+        LoD obj4 = new LoD(){EmpId=19,EmpName="Kamlesh",job="Manager",city="Gurgaon",salary=69248};
+        LoD obj5 = new LoD(){EmpId=78,EmpName="Rinku",job="Influencer",city="Mumbai",salary=14521};
+        LoD obj6 = new LoD(){EmpId=65,EmpName="Jigna",job="Influencer",city="Jaipur",salary=25000};
+        LoD obj7 = new LoD(){EmpId=91,EmpName="munawar",job="Influencer",city="Kolkata",salary=16500};
+
+        List<LoD> myList = new List<LoD>() {obj1,obj2,obj3,obj4,obj5,obj6,obj7};
+        
+        Console.WriteLine("var");
+        var result= myList.Last(emp=>emp.job=="Influencer");
+        Console.WriteLine(result.EmpName+","+result.job);
+
+        Console.WriteLine("Where");
+        List<LoD> myList1= myList.Where(emp=> emp.job=="Influencer").ToList();
+        Console.WriteLine(myList1[myList1.Count-1].EmpName+","+myList1[myList1.Count-1].job);
+
+        Console.WriteLine("Where using Last");
+        //u can also perform LastOrDefault 
+        LoD myList4= myList.Where(emp=> emp.job=="Influencer").Last();
+        Console.WriteLine(myList4.EmpName+","+myList4.job);
+
+        LoD myList2= myList.Last(emp=>emp.job=="Influencer");
+        Console.WriteLine(myList2.EmpName+","+myList2.job);
+
+        //clerk not avl
+        // LoD myList3= myList.Last(emp=>emp.job=="Clerk");
+        // Console.WriteLine(myList3.EmpName+","+myList3.job);
+        //op->Unhandled exception. System.InvalidOperationException: Sequence contains no matching element
+
+        // LoD myList3= myList.LastOrDefault(emp=>emp.job=="Clerk");
+        // Console.WriteLine(myList3.EmpName+","+myList3.job);
+        //op -> null
+
+
+        LoD myList3= myList.LastOrDefault(emp=>emp.job=="Clerk");
+        if(myList3 != null)
+        {
+            Console.WriteLine(myList3.EmpName+","+myList3.job);
+        }else{
+            Console.WriteLine("NOT FOUND");
+        }
+    }
+}
