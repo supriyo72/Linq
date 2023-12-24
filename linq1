@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+
+class Details
+{
+    public int EmpId{get; set;}
+    public string EmpName{get; set;}
+    public string job{get; set;}
+    public string city{get; set;}
+}
+public class Linq1{
+    public static void Main(string[] args)
+    {
+        Details obj1 = new Details()
+        {
+            EmpId=25,EmpName="Aman",job="Designer",city="Mumbai"
+        };
+        Details obj2 = new Details(){EmpId=65,EmpName="Rahul",job="Manager",city="Noida"};
+        Details obj3 = new Details(){EmpId=34,EmpName="Deepak",job="Salesman",city="Delhi"};
+        Details obj4 = new Details(){EmpId=19,EmpName="Kamlesh",job="Manager",city="Gurgaon"};
+        Details obj5 = new Details(){EmpId=78,EmpName="Rinku",job="Influencer",city="Mumbai"};
+
+        List<Details> myList = new List<Details>() {obj1,obj2,obj3,obj4,obj5};
+
+        // var result = myList.Where(emp=> emp.city== "Mumbai");
+        // foreach (Details item1 in result)
+        // {
+        //     Console.WriteLine($"id: {item1.EmpId},Name: {item1.EmpName}, job: {item1.job}, city: {item1.city}");
+        // }
+
+        IEnumerable<Details> result= myList.Where(emp=> emp.job== "Manager");
+        foreach (Details item1 in result)
+        {
+            Console.WriteLine($"id: {item1.EmpId},Name: {item1.EmpName}, job: {item1.job}, city: {item1.city}");
+        }
+
+        // foreach (Details item in myList)
+        // {
+        //     Console.WriteLine($"id: {item.EmpId},Name: {item.EmpName}, job: {item.job}, city: {item.city}");
+        // }
+    }
+
+
+}
