@@ -1,0 +1,75 @@
+using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+
+class OBDatas
+{
+    public int EmpId{get; set;}
+    public string EmpName{get; set;}
+    public string job{get; set;}
+    public string city{get; set;}
+    public double salary{get; set;}
+}
+public class Linq2{
+    public static void Main(string[] args)
+    {
+        OBDatas obj1 = new OBDatas()
+        {
+            EmpId=25,EmpName="Aman",job="Designer",city="Mumbai",salary=34500
+        };
+        OBDatas obj2 = new OBDatas(){EmpId=65,EmpName="Rahul",job="Manager",city="Noida",salary=45000};
+        OBDatas obj3 = new OBDatas(){EmpId=34,EmpName="Deepak",job="Salesman",city="Delhi",salary=21874};
+        OBDatas obj4 = new OBDatas(){EmpId=19,EmpName="Kamlesh",job="Manager",city="Gurgaon",salary=69248};
+        OBDatas obj5 = new OBDatas(){EmpId=78,EmpName="Rinku",job="Influencer",city="Mumbai",salary=14521};
+
+        List<OBDatas> myList = new List<OBDatas>() {obj1,obj2,obj3,obj4,obj5};
+
+        //Ascending
+        // var result= myList.OrderBy(emp=>emp.salary);
+        // foreach (OBDatas item in result)
+        // {
+        //     Console.WriteLine($"id: {item.EmpId},Name: {item.EmpName}, job: {item.job}, city: {item.city} salary: {item.salary}");
+        // }
+
+
+
+        // IEnumerable<OBDatas> result= myList.OrderBy(emp=>emp.salary);
+        // foreach (OBDatas item in result)
+        // {
+        //     Console.WriteLine($"id: {item.EmpId},Name: {item.EmpName}, job: {item.job}, city: {item.city} salary: {item.salary}");
+        // }
+
+
+
+        // IOrderedEnumerable<OBDatas> result= myList.OrderBy(emp=>emp.salary);
+        // IOrderedEnumerable<OBDatas> result= myList.OrderBy(emp=>emp.EmpName);
+        // foreach (OBDatas item in result)
+        // {
+        //     Console.WriteLine($"id: {item.EmpId},Name: {item.EmpName}, job: {item.job}, city: {item.city} salary: {item.salary}");
+        // }
+
+
+
+        /*Descending*/
+        // IOrderedEnumerable<OBDatas> result1= myList.OrderByDescending(emp=>emp.salary);
+        // foreach (OBDatas item in result1)
+        // {
+        //     Console.WriteLine($"id: {item.EmpId},Name: {item.EmpName}, job: {item.job}, city: {item.city} salary: {item.salary}");
+        // }
+
+
+
+        /*
+        ThenBy
+        we can use multiple ThenBy
+        The LINQ ThenBy or ThenByDescending Methods are used for secondary sorting. For example, sort the student by First Name and then sort the student by Last Name.
+        */
+        IOrderedEnumerable<OBDatas> result1= myList.OrderByDescending(emp=>emp.salary).ThenBy(emp=>emp.EmpName);
+        foreach (OBDatas item in result1)
+        {
+            Console.WriteLine($"id: {item.EmpId},Name: {item.EmpName}, job: {item.job}, city: {item.city} salary: {item.salary}");
+        }
+
+    }
+}
