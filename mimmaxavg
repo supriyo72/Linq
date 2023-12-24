@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+
+class myClass
+{
+    public int EmpId{get; set;}
+    public string EmpName{get; set;}
+    public string job{get; set;}
+    public string city{get; set;}
+    public double salary{get; set;}
+}
+public class Linq8{
+    public static void Main(string[] args)
+    {
+        myClass obj1 = new myClass(){EmpId=25,EmpName="Aman",job="Designer",city="Mumbai",salary=34500};
+        myClass obj2 = new myClass(){EmpId=65,EmpName="Rahul",job="Developer",city="Noida",salary=45000};
+        myClass obj3 = new myClass(){EmpId=34,EmpName="Deepak",job="Salesman",city="Delhi",salary=21874};
+        myClass obj4 = new myClass(){EmpId=19,EmpName="Kamlesh",job="Manager",city="Gurgaon",salary=69248};
+        myClass obj5 = new myClass(){EmpId=78,EmpName="Rinku",job="Influencer",city="Mumbai",salary=14521};
+        myClass obj6 = new myClass(){EmpId=65,EmpName="Jigna",job="Influencer",city="Jaipur",salary=25000};
+        myClass obj7 = new myClass(){EmpId=91,EmpName="munawar",job="Influencer",city="Kolkata",salary=16500};
+
+        List<myClass> myList = new List<myClass>() {obj1,obj2,obj3,obj4,obj5,obj6,obj7};
+
+        double sum = myList.Sum(emp=>emp.salary);
+        double min = myList.Min(emp=>emp.salary);
+        double max = myList.Max(emp=>emp.salary);
+        double avg = myList.Average(emp=>emp.salary);
+        double cnt = myList.Count();
+
+        Console.WriteLine(sum);
+        Console.WriteLine(min);
+        Console.WriteLine(max);
+        Console.WriteLine(avg);
+        Console.WriteLine(cnt);
+
+
+        var sum1 = myList.Sum(emp=>emp.salary);
+        var min1 = myList.Min(emp=>emp.salary);
+        var max1 = myList.Max(emp=>emp.salary);
+        var avg1 = myList.Average(emp=>emp.salary);
+        var cnt1 = myList.Count();
+
+        Console.WriteLine(sum1);
+        Console.WriteLine(min1);
+        Console.WriteLine(max1);
+        Console.WriteLine(avg1);
+        Console.WriteLine(cnt1);
+    }
+}
