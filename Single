@@ -1,0 +1,73 @@
+/*
+In LINQ, the Single() method is used to return the single element from the collection, which satisfies the condition. 
+In case, if the Single() method found more than one element in collection or no element in the collection, 
+then it will throw the "InvalidOperationException" error.
+Both single and singleordef throws InvalidOperationException when there are more than one matching element found
+
+*/
+using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+
+class Single
+{
+    public int EmpId{get; set;}
+    public string EmpName{get; set;}
+    public string job{get; set;}
+    public string city{get; set;}
+    public double salary{get; set;}
+}
+public class Linq6{
+    public static void Main(string[] args)
+    {
+        Single obj1 = new Single(){EmpId=25,EmpName="Aman",job="Designer",city="Mumbai",salary=34500};
+        Single obj2 = new Single(){EmpId=65,EmpName="Rahul",job="Developer",city="Noida",salary=45000};
+        Single obj3 = new Single(){EmpId=34,EmpName="Deepak",job="Salesman",city="Delhi",salary=21874};
+        Single obj4 = new Single(){EmpId=19,EmpName="Kamlesh",job="Manager",city="Gurgaon",salary=69248};
+        Single obj5 = new Single(){EmpId=78,EmpName="Rinku",job="Influencer",city="Mumbai",salary=14521};
+        Single obj6 = new Single(){EmpId=65,EmpName="Jigna",job="Influencer",city="Jaipur",salary=25000};
+        Single obj7 = new Single(){EmpId=91,EmpName="munawar",job="Influencer",city="Kolkata",salary=16500};
+
+        List<Single> myList = new List<Single>() {obj1,obj2,obj3,obj4,obj5,obj6,obj7};
+        
+        Single result1= myList.Single(emp=> emp.city=="Noida");
+        Console.WriteLine($"{result1.EmpName},{result1.city}");
+
+        var result= myList.Single(emp=> emp.city=="Kolkata");
+        Console.WriteLine($"{result.EmpName},{result.city}");
+
+        
+        Single result2= myList.Where(emp=> emp.city=="Jaipur").Single();
+        Console.WriteLine($"{result2.EmpName},{result2.city}");
+        
+        Single result3= myList.SingleOrDefault(emp=> emp.city=="Chennai");
+        if(result3 !=null)
+        {
+            Console.WriteLine($"{result3.EmpName},{result3.city}");
+        }else{
+            Console.WriteLine("Not Found");
+        }
+        
+        // Single result4= myList.Single(emp=> emp.city=="Mumbai");
+        // Console.WriteLine($"{result4.EmpName},{result4.city}");
+        //Unhandled exception. System.InvalidOperationException: Sequence contains more than one matching element
+
+
+        Single result5= myList.SingleOrDefault(emp=> emp.city=="Dubai");
+
+        if(result5!=null)
+        {
+            Console.WriteLine($"{result5.EmpName},{result5.city}");
+        }
+        else
+        {
+            Console.WriteLine($"Invalid");
+        }
+
+        // Single result6= myList.SingleOrDefault(emp=> emp.city=="Mumbai");
+        // Console.WriteLine($"{result6.EmpName},{result6.city}");
+        //Unhandled exception. System.InvalidOperationException: Sequence contains more than one matching element
+
+    }
+}
