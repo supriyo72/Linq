@@ -34,7 +34,8 @@ public class Linq7{
         {
             Console.WriteLine($"{item.personName},{item.Personcity}");
         }
-    
+
+        //IEnumerable<Person> result1= myList.Select(emp=> new Person(){personName=emp.EmpName,Personcity=emp.city});
         List<Person> result1= myList.Select(emp=> new Person(){personName=emp.EmpName,Personcity=emp.city}).ToList();
         Console.WriteLine("Using List");
         foreach (Person item1 in result1)
