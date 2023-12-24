@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+
+class Select
+{
+    public int EmpId{get; set;}
+    public string EmpName{get; set;}
+    public string job{get; set;}
+    public string city{get; set;}
+    public double salary{get; set;}
+}
+class Person
+{
+    public string personName{get; set;}
+    public string Personcity{get; set;}
+}
+public class Linq7{
+    public static void Main(string[] args)
+    {
+        Select obj1 = new Select(){EmpId=25,EmpName="Aman",job="Designer",city="Mumbai",salary=34500};
+        Select obj2 = new Select(){EmpId=65,EmpName="Rahul",job="Developer",city="Noida",salary=45000};
+        Select obj3 = new Select(){EmpId=34,EmpName="Deepak",job="Salesman",city="Delhi",salary=21874};
+        Select obj4 = new Select(){EmpId=19,EmpName="Kamlesh",job="Manager",city="Gurgaon",salary=69248};
+        Select obj5 = new Select(){EmpId=78,EmpName="Rinku",job="Influencer",city="Mumbai",salary=14521};
+        Select obj6 = new Select(){EmpId=65,EmpName="Jigna",job="Influencer",city="Jaipur",salary=25000};
+        Select obj7 = new Select(){EmpId=91,EmpName="munawar",job="Influencer",city="Kolkata",salary=16500};
+
+        List<Select> myList = new List<Select>() {obj1,obj2,obj3,obj4,obj5,obj6,obj7};
+    
+        var result= myList.Select(emp=> new Person(){personName=emp.EmpName,Personcity=emp.city});
+        foreach (var item in result)
+        {
+            Console.WriteLine($"{item.personName},{item.Personcity}");
+        }
+    
+        List<Person> result1= myList.Select(emp=> new Person(){personName=emp.EmpName,Personcity=emp.city}).ToList();
+        Console.WriteLine("Using List");
+        foreach (Person item1 in result1)
+        {
+            Console.WriteLine($"{item1.personName},{item1.Personcity}");
+        }
+    }
+}
